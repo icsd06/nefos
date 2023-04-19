@@ -10,7 +10,7 @@ SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@localhost:3306/myfastdb"
 
 def get_engine():
-    engine = create_engine(db_url)
+    engine = create_engine(SQLALCHEMY_DATABASE_URL)
     return engine
 
 while True:
@@ -18,7 +18,7 @@ while True:
         engine = get_engine()
         result = engine.execute('SELECT 1')
         break
-    except sqlalchemy.exc.OperationalError:
+    except exc.OperationalError:
         print('MySQL server not available, retrying in 5 seconds...')
         time.sleep(5)
 
