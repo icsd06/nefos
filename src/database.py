@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy import exc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
@@ -9,7 +10,7 @@ SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@localhost:3306/myfastdb"
 
 def get_engine():
-    engine = sqlalchemy.create_engine(db_url)
+    engine = create_engine(db_url)
     return engine
 
 while True:
