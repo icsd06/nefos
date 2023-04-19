@@ -9,6 +9,7 @@ fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 sqlalchemy = "*"
 mysql-connector-python = "*"
+pymysql = "*"
 
 [dev-packages]
 
