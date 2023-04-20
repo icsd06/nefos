@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy import text
 from sqlalchemy import exc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -16,8 +17,10 @@ def get_engine():
 while True:
     try:
         engine = get_engine()
-        result = engine.execute('SELECT 1')
-        break
+        with engine.connect() as conn:
+            sqlt = text('SELECT 1')
+            result = conn.execute(sqlt)
+            break
     except exc.OperationalError:
         print('MySQL server not available, retrying in 5 seconds...')
         time.sleep(5)
